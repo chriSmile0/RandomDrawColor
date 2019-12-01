@@ -27,9 +27,9 @@ Liste insertion(int valeur1,Liste e){
 	
 	if (valeur1 == 0){
 		srand(time(NULL));
-		nouv->val[0] = rand() ;
-		nouv->val[1] = rand() ;
-		nouv->val[2] = rand() ;
+		nouv->val[0] = rand() % 255;
+		nouv->val[1] = rand() % 255;
+		nouv->val[2] = rand() % 255;
 	}
 
 	nouv->suivant = NULL;
