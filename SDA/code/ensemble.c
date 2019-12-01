@@ -18,7 +18,17 @@ bool estVide(Liste e){
 Liste insertion(int valeur1,Liste e){
 		
 	Chaine* nouv = malloc(sizeof(Chaine));
-	nouv->val = valeur1;
+	
+	if (valeur1 == 1){
+		for (int i=0; i<2; i++) 
+			nouv->val[i] = 0;
+	}
+	
+	if (valeur1 == 0){
+		for (int i=0; i<2; i++) 
+			nouv->val[i] = 255;
+	}
+
 	nouv->suivant = NULL;
 		
 	if (estVide(e)){
@@ -47,6 +57,14 @@ void detruire(Liste e){
 	}
 	free(tmp1);
 }
+
+Liste MakeSet(int valeur){
+	Liste e = listeNouv();
+	e = insertion(valeur,e);
+	return e;
+}
+
+
 
 /*--------------------------------------------------------Arbre--------------------------------------------------------------*/
 Arbre arbrbeNouv(){

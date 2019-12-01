@@ -7,7 +7,7 @@
 #include <stdbool.h> 
 
 typedef struct Chaine{
-	int val;
+	char val[3];
 	struct Chaine* representant;
 	struct Chaine* suivant;
 }Chaine;
