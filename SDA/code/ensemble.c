@@ -25,8 +25,9 @@ Liste insertion(int valeur1,Liste e){
 	}
 	
 	if (valeur1 == 0){
+		srand(time(NULL));
 		for (int i=0; i<2; i++) 
-			nouv->val[i] = 255;
+			nouv->val[i] = (rand() / RAND_MAX * (254));
 	}
 
 	nouv->suivant = NULL;
@@ -64,7 +65,10 @@ Liste MakeSet(int valeur){
 	return e;
 }
 
-
+/*TB creerTB(){
+	
+	
+}*/
 
 /*--------------------------------------------------------Arbre--------------------------------------------------------------*/
 Arbre arbrbeNouv(){
@@ -73,20 +77,9 @@ Arbre arbrbeNouv(){
 }
 
 /*int main(){
-		
+	
 	Liste e = listeNouv();
-	e = insertion(1,e);
-	e = insertion(2,e);
-	e = insertion(3,e);
-	e = insertion(4,e);
-	e = insertion(5,e);
-	
-	Chaine* tmp = e.head;
-	while(tmp != NULL){
-		printf("%d\n",tmp->val);
-		tmp = tmp->suivant;
-	}
-	
+
 	return 0;
 } */
 
