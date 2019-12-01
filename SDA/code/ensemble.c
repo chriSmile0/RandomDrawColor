@@ -20,14 +20,16 @@ Liste insertion(int valeur1,Liste e){
 	Chaine* nouv = malloc(sizeof(Chaine));
 	
 	if (valeur1 == 1){
-		for (int i=0; i<2; i++) 
-			nouv->val[i] = 0;
+		nouv->val[0] = 0;
+		nouv->val[1] = 0;
+		nouv->val[2] = 0;
 	}
 	
 	if (valeur1 == 0){
 		srand(time(NULL));
-		for (int i=0; i<2; i++) 
-			nouv->val[i] = (rand() / RAND_MAX * (254));
+		nouv->val[0] = rand() ;
+		nouv->val[1] = rand() ;
+		nouv->val[2] = rand() ;
 	}
 
 	nouv->suivant = NULL;
@@ -65,10 +67,20 @@ Liste MakeSet(int valeur){
 	return e;
 }
 
-/*TB creerTB(){
+TB creerTB(PBM p){
 	
+	TB t = malloc(sizeof(Liste*) * p.nbh);
+	for(int i=0; i<p.nbh; i++)
+		t[i] = malloc(sizeof(Liste) * p.nbl);
 	
-}*/
+	for(int i=0; i<p.nbh; i++){
+		for(int j=0; j<p.nbl; j++){
+			printf("%d",p.tableau[i][j]);
+			t[i][j] = MakeSet(p.tableau[i][j]);
+		}
+	}
+	return t;
+}
 
 /*--------------------------------------------------------Arbre--------------------------------------------------------------*/
 Arbre arbrbeNouv(){

@@ -52,11 +52,12 @@ PBM Read(char * filename){
 		}
 	}
 	pclose(pfile);
-	for(i=0; i<n; i++){
+	
+	/*for(i=0; i<n; i++){
 		for(j=0; j<m; j++){
 			printf("%d",p.tableau[i][j]);
 		}
-	}
+	}*/
 	
 	return p;
 }

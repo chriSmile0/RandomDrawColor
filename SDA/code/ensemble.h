@@ -9,7 +9,7 @@
 #include "fichier.h"
 
 typedef struct Chaine{
-	char val[3];
+	int val[3];
 	struct Chaine* representant;
 	struct Chaine* suivant;
 }Chaine;
@@ -30,6 +30,8 @@ Liste insertion(int valeur1, Liste e);
 void detruire(Liste e);
 
 Liste MakeSet(int valeur);
+
+TB creerTB(PBM p);
 
 /*  --------------------------------------Arbre--------------------------------------------------*/
 

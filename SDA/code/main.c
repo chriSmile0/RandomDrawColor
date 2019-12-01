@@ -12,8 +12,24 @@ int main(int argc, char *argv[])
 	}
 	
 	
-	//PBM p = Read(argv[1]);
+	PBM p = Read(argv[1]);
 	
+	TB t = creerTB(p);
+	
+	Liste l = t[0][0];
+	
+	int v1,v2,v3;
+	
+	v1 = l.head->val[0];
+	v2 = l.head->val[1];
+	v3 = l.head->val[2];
+	
+	printf("\n");
+	printf("%d\n",v1);
+	printf("%d\n",v2);
+	printf("%d\n",v3);
+	
+	/*
 	PPM p1;
 	p1.nbMage = "P3";
 	p1.nbl = 3;
@@ -31,10 +47,10 @@ int main(int argc, char *argv[])
 	p1.tableau[0][0] = 200;
 	p1.tableau[0][1] = 100;
 	p1.tableau[0][2] = 250;
-	
+	*/
 	//Write(p1);
 	
-	Generate(80,80);
+	//Generate(80,80);
 	
 	return 0;
 }
