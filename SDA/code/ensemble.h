@@ -33,6 +33,10 @@ Liste MakeSet(int valeur);
 
 TB creerTB(PBM p);
 
+Chaine* findSet(int i, int j, TB t);
+
+void detruireTB(TB t, PBM p);
+
 /*  --------------------------------------Arbre--------------------------------------------------*/
 
 typedef struct Noeud {

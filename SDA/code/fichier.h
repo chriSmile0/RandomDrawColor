@@ -26,6 +26,8 @@ typedef struct {
 
 PBM Read(char * filename);
 
+void freetab(PBM p);
+
 void Write(PPM p);
 
 void Generate(int n,int m);

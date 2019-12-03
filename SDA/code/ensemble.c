@@ -82,6 +82,25 @@ TB creerTB(PBM p){
 	return t;
 }
 
+Chaine* findSet(int i, int j, TB t){
+	return t[i][j].head->representant;
+}
+
+void detruireTB(TB t, PBM p){
+	
+	for(int i=0; i<p.nbh; i++){
+		for(int j=0; j<p.nbl; j++){
+			detruire(t[i][j]);
+		}
+	}
+	
+	for(int i=0; i<p.nbh; i++){
+		free(t[i]);
+	}
+	free(t);
+	
+}
+	
 /*--------------------------------------------------------Arbre--------------------------------------------------------------*/
 Arbre arbrbeNouv(){
 	Arbre a = NULL;

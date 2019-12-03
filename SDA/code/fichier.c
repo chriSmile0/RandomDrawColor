@@ -62,6 +62,14 @@ PBM Read(char * filename){
 	return p;
 }
 
+void freetab(PBM p){
+	
+	for(int i=0; i<p.nbh; i++){
+		free(p.tableau[i]);
+	}
+	free(p.tableau);
+}
+	
 void Write(PPM p){
 	
 	FILE* image = NULL;
