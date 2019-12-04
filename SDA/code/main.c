@@ -16,8 +16,7 @@ int main(int argc, char *argv[])
 	
 	TB t = creerTB(p);
 	
-	Liste l = t[0][0];
-	
+	/*
 	int v1,v2,v3;
 	
 	v1 = l.head->val[0];
@@ -28,12 +27,12 @@ int main(int argc, char *argv[])
 	printf("%d\n",v1);
 	printf("%d\n",v2);
 	printf("%d\n",v3);
+	*/
 	
-	/*
 	PPM p1;
 	p1.nbMage = "P3";
-	p1.nbl = 3;
-	p1.nbh = 1;
+	p1.nbl = p.nbl*3;
+	p1.nbh = p.nbh;
 	p1.max = 255;
 	
 	p1.tableau = malloc(sizeof(int*) * p1.nbh);
@@ -44,11 +43,20 @@ int main(int argc, char *argv[])
 		p1.tableau[i] = malloc(p1.nbl * sizeof(int));
 	}
 	
-	p1.tableau[0][0] = 200;
-	p1.tableau[0][1] = 100;
-	p1.tableau[0][2] = 250;
-	*/
-	//Write(p1);
+	for (int j=0; j<p1.nbh; j++){
+		for (int k=0, x=0; k<p1.nbl; x++, k++){
+			int i=0;
+			p1.tableau[j][k] = t[j][x].head->val[i];
+			k++;
+			i++;
+			p1.tableau[j][k] = t[j][x].head->val[i];
+			k++;
+			i++;
+			p1.tableau[j][k] = t[j][x].head->val[i];
+		}
+	}
+	
+	Write(p1);
 	
 	//Generate(80,80);
 	

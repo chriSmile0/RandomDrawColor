@@ -93,11 +93,13 @@ void Write(PPM p){
 				if (cmp < 70){
 					cmp++;
 					fprintf(image, "%d", p.tableau[i][j]);
+					fputs(" ", image);
 				}
 				if (cmp == 69){
 					cmp = 0;
 					fputs("\n",image);
 					fprintf(image, "%d", p.tableau[i][j]);
+					fputs(" ", image);
 				}
 			}
 		}
