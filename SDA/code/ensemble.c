@@ -26,7 +26,7 @@ Liste insertion(int valeur1,Liste e){
 	}
 	
 	if (valeur1 == 0){
-		srand(time(NULL));
+		
 		nouv->val[0] = rand() % 255;
 		nouv->val[1] = rand() % 255;
 		nouv->val[2] = rand() % 255;
@@ -63,6 +63,7 @@ void detruire(Liste e){
 
 Liste MakeSet(int valeur){
 	Liste e = listeNouv();
+	
 	e = insertion(valeur,e);
 	return e;
 }
@@ -73,9 +74,11 @@ TB creerTB(PBM p){
 	for(int i=0; i<p.nbh; i++)
 		t[i] = malloc(sizeof(Liste) * p.nbl);
 	
+	srand(time(NULL));
+	
 	for(int i=0; i<p.nbh; i++){
 		for(int j=0; j<p.nbl; j++){
-			printf("%d",p.tableau[i][j]);
+			//printf("%d",p.tableau[i][j]);
 			t[i][j] = MakeSet(p.tableau[i][j]);
 		}
 	}

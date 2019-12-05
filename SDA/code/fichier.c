@@ -87,20 +87,10 @@ void Write(PPM p){
 		fputs("\n",image);
 		
 		int i,j;
-		int cmp = 0;
 		for (i=0; i<p.nbh; i++){
-			for (j=0; j<p.nbl; j++){
-				if (cmp < 70){
-					cmp++;
-					fprintf(image, "%d", p.tableau[i][j]);
-					fputs(" ", image);
-				}
-				if (cmp == 69){
-					cmp = 0;
-					fputs("\n",image);
-					fprintf(image, "%d", p.tableau[i][j]);
-					fputs(" ", image);
-				}
+			for (j=0; j<p.nbl*3; j++){
+				fprintf(image, "%d", p.tableau[i][j]);
+				fputs(" ", image);
 			}
 		}
 	}

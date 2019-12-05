@@ -15,8 +15,9 @@ int main(int argc, char *argv[])
 	PBM p = Read(argv[1]);
 	
 	TB t = creerTB(p);
-	
 	/*
+	Liste l = t[0][40];
+	
 	int v1,v2,v3;
 	
 	v1 = l.head->val[0];
@@ -31,20 +32,22 @@ int main(int argc, char *argv[])
 	
 	PPM p1;
 	p1.nbMage = "P3";
-	p1.nbl = p.nbl*3;
+	p1.nbl = p.nbl;
 	p1.nbh = p.nbh;
 	p1.max = 255;
+	
+	int tmp = p.nbl*3;
 	
 	p1.tableau = malloc(sizeof(int*) * p1.nbh);
 	
 	int i;
 	
 	for(i=0; i<p1.nbh; i++){
-		p1.tableau[i] = malloc(p1.nbl * sizeof(int));
+		p1.tableau[i] = malloc(tmp * sizeof(int));
 	}
 	
 	for (int j=0; j<p1.nbh; j++){
-		for (int k=0, x=0; k<p1.nbl; x++, k++){
+		for (int k=0, x=0; k<tmp; x++, k++){
 			int i=0;
 			p1.tableau[j][k] = t[j][x].head->val[i];
 			k++;
@@ -59,6 +62,9 @@ int main(int argc, char *argv[])
 	Write(p1);
 	
 	//Generate(80,80);
+	
+	detruireTB(t,p);
+	freetab(p);
 	
 	return 0;
 }
