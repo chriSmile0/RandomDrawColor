@@ -106,12 +106,12 @@ void detruireTB(TB t, PBM p){
 	
 void Union(Liste l1, Liste l2){
 	
-	l1->tail.suivant = l2->head;
-	l1->tail = l2->tail;
+	l1.tail->suivant = l2.head;
+	l1.tail = l2.tail;
 	
-	Chaine* tmp = l2->head;
+	Chaine* tmp = l2.head;
 	while(tmp != NULL){
-		tmp->representant = l1->head;
+		tmp->representant = l1.head;
 		tmp = tmp->suivant;
 	}
 }
