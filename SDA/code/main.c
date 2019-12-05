@@ -14,7 +14,11 @@ int main(int argc, char *argv[])
 	
 	PBM p = Read(argv[1]);
 	
+	printf("Read fini\n");
+	
 	TB t = creerTB(p);
+	
+	printf("Creation TB\n");
 	/*
 	Liste l = t[0][40];
 	
@@ -59,12 +63,19 @@ int main(int argc, char *argv[])
 		}
 	}
 	
+	printf("Crea PPM\n");
+	
 	Write(p1);
+	
+	printf("Write\n");
 	
 	//Generate(80,80);
 	
 	detruireTB(t,p);
 	freetab(p);
+	freeTab(p1);
+	
+	printf("Free\n");
 	
 	return 0;
 }

@@ -44,11 +44,6 @@ PBM Read(char * filename){
 		for(j=0; j<m; j++){
 			fscanf(pfile,"%d",&k);
 			p.tableau[i][j] = k;
-			if (p.tableau[i][j] != 1 && p.tableau[i][j] != 0) {
-				printf("%d\n", p.tableau[i][j]);
-				fprintf(stderr, "erreur int fichier");
-				exit(EXIT_FAILURE);
-			}
 		}
 	}
 	pclose(pfile);
@@ -63,6 +58,18 @@ PBM Read(char * filename){
 }
 
 void freetab(PBM p){
+	
+	//free(p.nbMage);
+	
+	for(int i=0; i<p.nbh; i++){
+		free(p.tableau[i]);
+	}
+	free(p.tableau);
+}
+
+void freeTab(PPM p){
+	
+	//free(p.nbMage);
 	
 	for(int i=0; i<p.nbh; i++){
 		free(p.tableau[i]);

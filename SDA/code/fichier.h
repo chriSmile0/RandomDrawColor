@@ -28,6 +28,8 @@ PBM Read(char * filename);
 
 void freetab(PBM p);
 
+void freeTab(PPM p);
+
 void Write(PPM p);
 
 void Generate(int n,int m);
