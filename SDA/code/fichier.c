@@ -31,7 +31,7 @@ PBM Read(char * filename){
 	}
 	
 	int i,j;
-	char c;
+	//char c[1];
 	
 	for(i=0; i<n; i++){
 		p.tableau[i] = malloc(m * sizeof(int));
@@ -42,12 +42,18 @@ PBM Read(char * filename){
 	}
 	int k;
 	
+	//fseek(pfile, 1, SEEK_CUR);
 	for(i=0; i<n; i++){
 		for(j=0; j<m; j++){
 			fscanf(pfile,"%d",&k);
-			/*c = fgetc(pfile);
-			k = c-'0';
-			printf("%d\n",n);*/
+			//c = fgetc(pfile);
+			/*fread(c, 1, 1,pfile);
+			if (c[0] == '\n' || c[0] == ' '){
+				fseek(pfile, 1, SEEK_CUR);
+				fread(c, 1, 1,pfile);
+			}
+			k = c[0]-'0';
+			printf("%d\n",k);*/
 			p.tableau[i][j] = k;
 		}
 	}

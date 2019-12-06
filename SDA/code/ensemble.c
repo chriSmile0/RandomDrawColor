@@ -112,9 +112,17 @@ void Union(Liste l1, Liste l2){
 	Chaine* tmp = l2.head;
 	while(tmp != NULL){
 		tmp->representant = l1.head;
+		tmp.val[0] = l1.head->representant.val[0];
+		tmp.val[1] = l1.head->representant.val[1];
+		tmp.val[2] = l1.head->representant.val[2];
 		tmp = tmp->suivant;
 	}
+	
+	l2.head = l1.head->representant;
 }
+
+
+
 
 /*--------------------------------------------------------Arbre--------------------------------------------------------------*/
 Arbre arbrbeNouv(){

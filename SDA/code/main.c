@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "fichier.h"
 #include "ensemble.h"
+
+bool estNoir(Liste l)
+{
+	return (l.head.val[0] == 0 && l.head.val[1] == 0 && l.head.val[2] == 0);
+}
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +23,20 @@ int main(int argc, char *argv[])
 	printf("Read fini\n");
 	
 	TB t = creerTB(p);
+	
+	for (int i=0; i<p.nbh; i++){
+		for (int j=0; j<p.nbl; j++){
+			if (i == 0 && j ==0){
+				if (!estNoir(t[i][j+1]))
+					Union(t[i][j], t[i][j+1]);
+				if (!estNoir(t[i+1][j]))
+					Union(t[i][j], t[i+1][j]);
+			}
+			if (i == p.nbh-1 && j ==0){
+				if (!estNoir(t[i-1][j]))
+					Union(t[i][j], t[][]
+			}//a finir
+			
 	
 	printf("Creation TB\n");
 	/*
