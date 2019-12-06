@@ -37,6 +37,8 @@ Chaine* findSet(int i, int j, TB t);
 
 void detruireTB(TB t, PBM p);
 
+void Union(Liste l1, Liste l2);
+
 /*  --------------------------------------Arbre--------------------------------------------------*/
 
 typedef struct Noeud {
