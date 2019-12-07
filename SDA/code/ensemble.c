@@ -30,6 +30,12 @@ Liste insertion(int valeur1,Liste e){
 		nouv->val[0] = rand() % 255;
 		nouv->val[1] = rand() % 255;
 		nouv->val[2] = rand() % 255;
+		
+		if (nouv->val[0] == 0 && nouv->val[1] == 0 && nouv->val[2] == 0){
+			nouv->val[0] = rand() % 255;
+			nouv->val[1] = rand() % 255;
+			nouv->val[2] = rand() % 255;
+		}
 	}
 
 	nouv->suivant = NULL;
