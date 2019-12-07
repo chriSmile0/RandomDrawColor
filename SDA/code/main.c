@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 	
 	TB t = creerTB(p);
 	
-	t = voisin(t,p);
+	//t = voisin(t,p);
 			
 	printf("Creation TB\n");
 	/*

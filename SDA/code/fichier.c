@@ -31,7 +31,7 @@ PBM Read(char * filename){
 	}
 	
 	int i,j;
-	//char c[1];
+	char c[1];
 	
 	for(i=0; i<n; i++){
 		p.tableau[i] = malloc(m * sizeof(int));
@@ -42,18 +42,25 @@ PBM Read(char * filename){
 	}
 	int k;
 	
-	//fseek(pfile, 1, SEEK_CUR);
+	fseek(pfile, 1, SEEK_CUR);
+	int cmp = 0;
 	for(i=0; i<n; i++){
 		for(j=0; j<m; j++){
-			fscanf(pfile,"%d",&k);
+			//fscanf(pfile,"%d",&k);
 			//c = fgetc(pfile);
-			/*fread(c, 1, 1,pfile);
-			if (c[0] == '\n' || c[0] == ' '){
+			
+			if (cmp == 70){
 				fseek(pfile, 1, SEEK_CUR);
 				fread(c, 1, 1,pfile);
+				cmp = 1;
 			}
+			else {
+				fread(c, 1, 1,pfile);
+				cmp++;
+			}
+			
 			k = c[0]-'0';
-			printf("%d\n",k);*/
+			//printf("%d/%d ",cmp,k);
 			p.tableau[i][j] = k;
 		}
 	}
@@ -138,7 +145,6 @@ void Generate(int n,int m){
 					cmp++;
 					int chiffre = rand()%2;
 					fprintf(image, "%d",chiffre );
-					fputs(" ",image);
 				}
 				if (cmp == 69){
 					cmp = 0;
