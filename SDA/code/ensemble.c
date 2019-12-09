@@ -97,9 +97,10 @@ Chaine* findSet(int i, int j, TB t){
 
 void detruireTB(TB t, PBM p){
 	
+	
 	for(int i=0; i<p.nbh; i++){
 		for(int j=0; j<p.nbl; j++){
-			detruire(t[i][j]);
+			detruire(t[i][j].head);
 		}
 	}
 	
@@ -125,6 +126,7 @@ void Union(Liste l1, Liste l2){
 	}
 	
 	l2.head = l1.head->representant;
+	
 }
 
 
