@@ -19,6 +19,7 @@ typedef struct Liste{
 	struct Chaine* tail;
 }Liste;
 
+
 typedef struct Liste** TB;
 
 Liste listeNouv();
@@ -37,7 +38,9 @@ Chaine* findSet(int i, int j, TB t);
 
 void detruireTB(TB t, PBM p);
 
-void Union(Liste l1, Liste l2);
+void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j);
+
+void uniformiser(TB t, PBM p, Liste l2, int i, int j);
 
 /*  --------------------------------------Arbre--------------------------------------------------*/
 

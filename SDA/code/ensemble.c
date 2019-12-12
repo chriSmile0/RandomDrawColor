@@ -40,17 +40,10 @@ Liste insertion(int valeur1,Liste e){
 
 	nouv->suivant = NULL;
 		
-	if (estVide(e)){
-		e.head = nouv;
-		e.tail = nouv;
-		nouv->representant = nouv;
-	}
-		
-	else {
-		e.tail->suivant = nouv;
-		e.tail = nouv;
-		nouv->representant = e.head;
-	}
+
+	e.head = nouv;
+	e.tail = nouv;
+	nouv->representant = nouv;
 	
 	return e;
 }
@@ -64,7 +57,7 @@ void detruire(Liste e){
 		free(tmp);
 		tmp = tmp1;
 	}
-	free(tmp1);
+
 }
 
 Liste MakeSet(int valeur){
@@ -97,12 +90,12 @@ Chaine* findSet(int i, int j, TB t){
 
 void detruireTB(TB t, PBM p){
 	
-	
+	/*
 	for(int i=0; i<p.nbh; i++){
 		for(int j=0; j<p.nbl; j++){
-			detruire(t[i][j].head);
+			detruire(t[i][j]);
 		}
-	}
+	}*/
 	
 	for(int i=0; i<p.nbh; i++){
 		free(t[i]);
@@ -111,25 +104,126 @@ void detruireTB(TB t, PBM p){
 	
 }
 	
-void Union(Liste l1, Liste l2){
+void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j){
 	
 	l1.tail->suivant = l2.head;
 	l1.tail = l2.tail;
 	
 	Chaine* tmp = l2.head;
 	while(tmp != NULL){
-		tmp->representant = l1.head;
+		tmp->representant = l1.head->representant;
+		//printf("fait\n"); 
 		tmp->val[0] = l1.head->representant->val[0];
 		tmp->val[1] = l1.head->representant->val[1];
 		tmp->val[2] = l1.head->representant->val[2];
 		tmp = tmp->suivant;
 	}
-	
-	l2.head = l1.head->representant;
-	
+	uniformiser(t,p,l1,i,j);
+	l2.head = l1.head;
 }
 
-
+void uniformiser(TB t, PBM p, Liste l1, int i, int j){
+	t[i][j].head = l1.head;
+	
+	if (i == 0 && j == 0){
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].head = l1.head;
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].head = l1.head;
+		}
+	}
+	
+	else if (i == p.nbh-1 && j == 0){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].head = l1.head;
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].head = l1.head;
+		}
+	}
+	
+	else if (i == 0 && j == p.nbl-1){
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].head = l1.head;
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].head = l1.head;
+		}
+	}
+	
+	else if (i == p.nbh-1 && j == p.nbl-1){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].head = l1.head;
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].head = l1.head;
+		}
+	}
+	
+	else if (i > 0 && i < p.nbh-1 && j == 0){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].head = l1.head;
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].head = l1.head;
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].head = l1.head;
+		}
+	}
+	
+	else if (i == 0 && j < p.nbl-1 && j > 0){
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].head = l1.head;
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].head = l1.head;
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].head = l1.head;
+		}
+	}
+	
+	else if (i > 0 && i < p.nbh-1 && j == p.nbl-1){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].head = l1.head;
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].head = l1.head;
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].head = l1.head;
+		}
+	}
+	
+	else if (i == p.nbh-1 && j < p.nbl-1 && j > 0){
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].head = l1.head;
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].head = l1.head;
+		}
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].head = l1.head;
+		}
+	}
+	
+	else {
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].head = l1.head;
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].head = l1.head;
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].head = l1.head;
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].head = l1.head;
+		}
+	}
+}
 /*--------------------------------------------------------Arbre--------------------------------------------------------------*/
 Arbre arbrbeNouv(){
 	Arbre a = NULL;
