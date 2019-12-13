@@ -28,8 +28,6 @@ bool estVide(Liste e);
 
 Liste insertion(int valeur1, Liste e);
 
-void detruire(Liste e);
-
 Liste MakeSet(int valeur);
 
 TB creerTB(PBM p);
@@ -38,7 +36,9 @@ Chaine* findSet(int i, int j, TB t);
 
 void detruireTB(TB t, PBM p);
 
-void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j);
+void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j, int x, int y);
+	
+void reuniformiser(TB t,PBM p,Liste l2,int i,int j);
 
 void uniformiser(TB t, PBM p, Liste l2, int i, int j);
 

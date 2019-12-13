@@ -35,10 +35,10 @@ TB voisin(TB t, PBM p){
 			if (i == 0 && j == 0){  //en haut a gauche
 				if (estNoir(t[i][j]) == false){
 					if (estNoir(t[i][j+1]) == false){
-						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1); }
+						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1, i, j); }
 					}
 					if (estNoir(t[i+1][j]) == false){
-						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j); }
+						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j, i, j); }
 					}
 				}
 				printf("hg\n");
@@ -48,10 +48,10 @@ TB voisin(TB t, PBM p){
 			else if (i == p.nbh-1 && j == 0){  //en bas a gauche
 				if (estNoir(t[i][j]) == false){
 					if (estNoir(t[i-1][j]) == false){
-						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j); }
+						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j); }
 					}
 					if ( !estNoir(t[i][j+1])){
-						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1);  }
+						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1, i, j);  }
 					}
 					printf("bg\n");
 				}
@@ -64,10 +64,10 @@ TB voisin(TB t, PBM p){
 				
 				if (estNoir(t[i][j]) == false){
 					if (!estNoir(t[i][j-1])){
-						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1);  }
+						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1, i, j);  }
 					}
 					if (!estNoir(t[i+1][j])){
-						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j); }
+						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j, i, j); }
 					}
 				}
 			}
@@ -75,10 +75,10 @@ TB voisin(TB t, PBM p){
 			else if (i == p.nbh-1 && j == p.nbl-1){  //en bas a droite
 				if (estNoir(t[i][j]) == false){
 					if (estNoir(t[i-1][j]) == false){
-						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j); }
+						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j); }
 					}
 					if (!estNoir(t[i][j-1])){
-						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1);  }
+						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1, i, j);  }
 					}
 				}
 			}
@@ -88,13 +88,13 @@ TB voisin(TB t, PBM p){
 				printf("cg\n");
 				if (estNoir(t[i][j]) == false){
 					if (!estNoir(t[i][j+1])){
-						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1);  }
+						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1, i, j);  }
 					}
 					if (!estNoir(t[i+1][j])){
-						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j); }
+						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j, i, j); }
 					}
 					if (!estNoir(t[i-1][j])){
-						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j);  }
+						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j);  }
 					}
 				}
 			}
@@ -104,13 +104,13 @@ TB voisin(TB t, PBM p){
 				
 				if (estNoir(t[i][j]) == false){
 					if (!estNoir(t[i][j-1])){
-						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1);  }
+						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1, i, j);  }
 					}
 					if (!estNoir(t[i][j+1])){
-						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1); }
+						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1, i, j); }
 					}
 					if (!estNoir(t[i+1][j])){
-						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j); }
+						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j, i, j); }
 					}
 				}
 			}
@@ -119,13 +119,13 @@ TB voisin(TB t, PBM p){
 				printf("cd\n");
 				if (estNoir(t[i][j]) == false){
 					if (!estNoir(t[i][j-1])){
-						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1); }
+						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1, i, j); }
 					}
 					if (!estNoir(t[i+1][j])){
-						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j); }
+						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j, i, j); }
 					}
 					if (estNoir(t[i-1][j]) == false){
-						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j); }
+						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j); }
 					}
 				}
 			}
@@ -134,13 +134,13 @@ TB voisin(TB t, PBM p){
 				printf("lb\n");
 				if (estNoir(t[i][j]) == false){
 					if (!estNoir(t[i][j+1])){
-						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1);  }
+						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1, i, j);  }
 					}
 					if (estNoir(t[i-1][j]) == false){
-						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j); }
+						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j); }
 					}
 					if (!estNoir(t[i][j-1])){
-						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1); }
+						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1, i, j); }
 					}
 				}
 			}
@@ -150,18 +150,18 @@ TB voisin(TB t, PBM p){
 				
 				if (estNoir(t[i][j]) == false){
 					if (estNoir(t[i-1][j]) == false){
-						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j); }
+						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j); }
 					}
 					if (!estNoir(t[i+1][j])){
-						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j); }
+						if (t[i+1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i+1][j], i+1, j, i, j); }
 					}
 					
 					if (!estNoir(t[i][j-1])){
-						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1) ; }
+						if (t[i][j-1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j-1], i, j-1, i, j) ; }
 					}
 					
 					if (!estNoir(t[i][j+1])){
-						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1);  }
+						if (t[i][j+1].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i][j+1], i, j+1, i, j);  }
 					}
 				
 				}

@@ -48,18 +48,6 @@ Liste insertion(int valeur1,Liste e){
 	return e;
 }
 
-void detruire(Liste e){
-	
-	Chaine* tmp = e.head;
-	Chaine* tmp1;
-	while (tmp != NULL){
-		tmp1 = tmp->suivant;
-		free(tmp);
-		tmp = tmp1;
-	}
-
-}
-
 Liste MakeSet(int valeur){
 	Liste e = listeNouv();
 	
@@ -93,7 +81,8 @@ void detruireTB(TB t, PBM p){
 	/*
 	for(int i=0; i<p.nbh; i++){
 		for(int j=0; j<p.nbl; j++){
-			detruire(t[i][j]);
+			Chaine* tmp = t[i][j].head;
+			free(tmp);
 		}
 	}*/
 	
@@ -104,7 +93,7 @@ void detruireTB(TB t, PBM p){
 	
 }
 	
-void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j){
+void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j, int x, int y){ // i j -> liste 2   x y ->liste 1
 	
 	l1.tail->suivant = l2.head;
 	l1.tail = l2.tail;
@@ -112,14 +101,140 @@ void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j){
 	Chaine* tmp = l2.head;
 	while(tmp != NULL){
 		tmp->representant = l1.head->representant;
-		//printf("fait\n"); 
 		tmp->val[0] = l1.head->representant->val[0];
 		tmp->val[1] = l1.head->representant->val[1];
 		tmp->val[2] = l1.head->representant->val[2];
 		tmp = tmp->suivant;
 	}
+	reuniformiser(t,p,l2,x,y);
 	uniformiser(t,p,l1,i,j);
-	l2.head = l1.head;
+}
+
+void reuniformiser(TB t,PBM p,Liste l2,int i,int j){
+	t[i][j].tail = l2.tail;
+	if (i == 0 && j == 0){
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j+1);
+		}
+	}
+	
+	else if (i == p.nbh-1 && j == 0){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i-1,j);
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j+1);
+		}
+	}
+	
+	else if (i == 0 && j == p.nbl-1){
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].tail= l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j-1);
+		}
+	}
+	
+	else if (i == p.nbh-1 && j == p.nbl-1){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j-1);
+		}
+	}
+	
+	else if (i > 0 && i < p.nbh-1 && j == 0){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i-1,j);
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j+1);
+		}
+	}
+	
+	else if (i == 0 && j < p.nbl-1 && j > 0){//la
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j-1);
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j+1);
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+	}
+	
+	else if (i > 0 && i < p.nbh-1 && j == p.nbl-1){
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i-1,j);
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j-1);
+		}
+	}
+	
+	else if (i == p.nbh-1 && j < p.nbl-1 && j > 0){
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j-1);
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j+1);
+		}
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i-1,j);
+		}
+	}
+	
+	else {
+		if (t[i-1][j].head->representant == t[i][j].head->representant){
+			t[i-1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i-1,j);
+		}
+		if (t[i+1][j].head->representant == t[i][j].head->representant){
+			t[i+1][j].tail = l2.tail;
+			//reuniformiser(t,p,l2,i+1,j);
+		}
+		if (t[i][j-1].head->representant == t[i][j].head->representant){
+			t[i][j-1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j-1);
+		}
+		if (t[i][j+1].head->representant == t[i][j].head->representant){
+			t[i][j+1].tail = l2.tail;
+			//reuniformiser(t,p,l2,i,j+1);
+		}
+	}
+	
 }
 
 void uniformiser(TB t, PBM p, Liste l1, int i, int j){
