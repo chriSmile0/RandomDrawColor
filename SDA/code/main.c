@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 #include "fichier.h"
 #include "ensemble.h"
@@ -149,6 +150,7 @@ TB voisin(TB t, PBM p){
 			else {
 				
 				if (estNoir(t[i][j]) == false){
+					
 					if (estNoir(t[i-1][j]) == false){
 						if (t[i-1][j].head->representant != t[i][j].head->representant) { Union(t, p, t[i][j], t[i-1][j], i-1, j, i, j); }
 					}
@@ -181,6 +183,10 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	
+	float temps;
+	clock_t t1,t2;
+	
+	t1 = clock();
 	
 	PBM p = Read(argv[1]);
 	
@@ -239,12 +245,15 @@ int main(int argc, char *argv[])
 	Write(p1);
 	
 	
-	//Generate(80,80);
+	//Generate(100,100);
 	freetab(p);
 	freeTab(p1);
 	detruireTB(t,p);
 	printf("encule!! \n");
 	
+	t2 = clock();
+	temps = (float)(t2-t1)/CLOCKS_PER_SEC;
+	printf("temps = %f\n", temps);
 	
 	return 0;
 }
