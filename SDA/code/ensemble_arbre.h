@@ -12,11 +12,10 @@
 typedef struct Noeud {
 	int hauteur;
 	int pixel[3];
-    int rang;
+	//int nb;
 	struct Noeud* pere;
 }Noeud;
 
-//typedef struct Noeud* Arbre;
 
 typedef struct Arbre {
 	struct Noeud* chaine;
@@ -46,6 +45,8 @@ void detruireTB(TB t, PBM p);
 
 Arbre MakeSet(int pixel);
 
-Noeud* findSet(int i, int j, TB t);
+Noeud* findSet(Arbre a);
+
+void Union(Arbre a1, Arbre a2);
 
 #endif

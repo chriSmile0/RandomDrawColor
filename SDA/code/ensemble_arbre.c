@@ -87,7 +87,7 @@ Arbre Insertion_A(Arbre a, int pixel)//FOnctionne il faut juste ajouter la haute
    
     
     nouv_node->pere = nouv_node;
-    nouv_node->rang = 0;
+    //nouv_node->nb = 0;
     nouv_node->hauteur = 0;
 	a.chaine = nouv_node;
     return a;
@@ -134,8 +134,31 @@ TB creerTB(PBM p){
 	return t;
 }
 
-Noeud* findSet(int i, int j, TB t) {
-    Noeud* tmp = t[i][j].chaine;
+void Union(Arbre a1, Arbre a2){ 
+	
+	Noeud* tmp = findSet(a2);
+	Noeud* tmp2 = a1.chaine;
+	
+	tmp->pere = tmp2;
+	
+	if (tmp2->hauteur <= tmp->hauteur){
+		tmp2->hauteur = 1 + tmp->hauteur;
+	
+		Noeud* temp = tmp2->pere;
+		while(temp->pere != temp){
+			if (temp->hauteur <= tmp2->hauteur){
+				temp->hauteur = tmp2->hauteur +1;
+				tmp2 = temp;
+				temp = temp->pere;
+			}
+			else { temp = temp->pere;}
+		}
+		temp->hauteur = tmp2->hauteur +1;
+	}
+}
+
+Noeud* findSet(Arbre a) {
+    Noeud* tmp = a.chaine;
     while(tmp->pere != tmp){
 		tmp = tmp->pere;
 	}

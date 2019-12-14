@@ -8,11 +8,7 @@
 
 bool estNoir(Liste l)
 {
-	/*if (l.head == NULL){
-		
-		fprintf(stderr, " erreur estNoir");
-		exit(EXIT_FAILURE);
-	}*/
+
 	if (l.head->val[0] == 0){
 		if(l.head->val[1] == 0){
 			if(l.head->val[2] == 0){
