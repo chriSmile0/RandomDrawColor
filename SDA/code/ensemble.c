@@ -339,18 +339,7 @@ void uniformiser(TB t, PBM p, Liste l1, int i, int j){
 		}
 	}
 }
-/*--------------------------------------------------------Arbre--------------------------------------------------------------*/
-Arbre arbrbeNouv(){
-	Arbre a = NULL;
-	return a;
-}
 
-/*int main(){
-	
-	Liste e = listeNouv();
-
-	return 0;
-} */
 
 
 			

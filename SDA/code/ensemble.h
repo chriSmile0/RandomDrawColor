@@ -42,16 +42,5 @@ void reuniformiser(TB t,PBM p,Liste l2,int i,int j);
 
 void uniformiser(TB t, PBM p, Liste l2, int i, int j);
 
-/*  --------------------------------------Arbre--------------------------------------------------*/
-
-typedef struct Noeud {
-	int hauteur;
-	int pixel[3];
-	struct Noeud* pere;
-}Noeud;
-
-typedef struct Noeud* Arbre;
-
-Arbre arbrbeNouv();
 
 #endif
