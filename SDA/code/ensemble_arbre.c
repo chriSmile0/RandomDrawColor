@@ -134,6 +134,22 @@ TB creerTB(PBM p){
 	return t;
 }
 
+bool estNoir(Arbre a)
+{
+	if (a.chaine->pixel[0] == 0){
+		if (a.chaine->pixel[1] == 0){
+			if (a.chaine->pixel[2] == 0){
+				return true;
+			}
+		}
+	}
+	else {
+		return false;
+	}	
+	
+	return false;
+}
+
 void Union(Arbre a1, Arbre a2){ 
 	
 	Noeud* tmp = findSet(a2);

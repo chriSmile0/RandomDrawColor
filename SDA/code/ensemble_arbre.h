@@ -47,6 +47,8 @@ Arbre MakeSet(int pixel);
 
 Noeud* findSet(Arbre a);
 
+bool estNoir(Arbre a);
+
 void Union(Arbre a1, Arbre a2);
 
 #endif
