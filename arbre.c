@@ -3,6 +3,25 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h> 
+#include <string.h>
+
+
+typedef int** Tab;
+
+typedef struct { 
+	char * nbMage;
+	int nbl;
+	int nbh;
+	Tab tableau;
+}PBM;
+
+typedef struct {
+	char *nbMage;
+	int nbl;
+	int nbh;
+	int max;
+	Tab tableau;
+}PPM;
 
 
 
@@ -14,6 +33,7 @@ typedef struct Noeud {
 }Noeud;
 
 typedef struct Noeud* Arbre;
+typedef struct Arbre** TB;
 
 int max_2(int a, int b)
 {
@@ -39,7 +59,6 @@ int Hauteur_Arbre(Arbre a)//La fonction Hauteur et correct aussi
 
 
 
-
 Arbre arbreNouv()
 {
 	Arbre a = NULL;
@@ -53,19 +72,7 @@ bool estVide(Arbre a){
 		return false;
 }
 
-Arbre Increment_A(Arbre a){
-    Arbre copie_a = a;
-    if(copie_a==NULL){
-        return copie_a;
-    }
-    while(a->pere!=a){
-        a = a->pere;
-    }
-    
-    return a;
-    //return copie_a->pere;
-    
-}
+
 
 Arbre Insertion_Hauteur(Arbre a){//On va inserer les hauteurs dans l'arbre
     Noeud *ptr_a = a;
@@ -114,7 +121,6 @@ Arbre Insertion_A(Arbre a, int pixel)//FOnctionne il faut juste ajouter la haute
 		nouv_node->pixel[2] = rand() % 255;
     }
    
-    //Arbre copie_a = a;
     if(estVide(a)){
         nouv_node->pere = nouv_node;
         nouv_node->rang = 0;
@@ -122,7 +128,6 @@ Arbre Insertion_A(Arbre a, int pixel)//FOnctionne il faut juste ajouter la haute
         a = nouv_node;
         return a;
     }
-    
     else {
        nouv_node->pere = a;
        nouv_node->rang = a->rang +1;
@@ -130,9 +135,55 @@ Arbre Insertion_A(Arbre a, int pixel)//FOnctionne il faut juste ajouter la haute
        a = nouv_node;
        
     }
-    //a->hauteur = Hauteur_Arbre(a) - Hauteur_Arbre(nouv_node);
     //Mon insertion et juste et fonctionne, il faut juste ajouter la hauteur
     return a;
+}
+
+
+void detruire(Arbre a){
+	
+	Noeud* tmp = a;
+	Noeud* tmp1;
+	while (tmp->pere != tmp){
+		tmp1 = tmp->pere;
+		free(tmp);
+		tmp = tmp1;
+	}
+
+}
+
+
+TB creerTB(PBM p){
+	
+	TB t = malloc(sizeof(Arbre*) * p.nbh);
+	for(int i=0; i<p.nbh; i++)
+		t[i] = malloc(sizeof(Arbre) * p.nbl);
+	
+	srand(time(NULL));
+	
+	for(int i=0; i<p.nbh; i++){
+		for(int j=0; j<p.nbl; j++){
+			//printf("%d",p.tableau[i][j]);
+			t[i][j] = MakeSet(p.tableau[i][j]);
+		}
+	}
+	return t;
+}
+
+void detruireTB(TB t, PBM p){
+	
+	/*
+	for(int i=0; i<p.nbh; i++){
+		for(int j=0; j<p.nbl; j++){
+			detruire(t[i][j]);
+		}
+	}*/
+	
+	for(int i=0; i<p.nbh; i++){
+		free(t[i]);
+	}
+	free(t);
+	
 }
 
 Arbre MakeSet(int pixel)
@@ -143,10 +194,15 @@ Arbre MakeSet(int pixel)
 	return e;
 }
 
-void AfficheArbre(Arbre A)
-{
-    
+Noeud  findSet(int i, int j, TB t) {
+    while (t[i][j]->pere != t[i][j] )
+        t[i][j] = t[i][j]->pere;
+    return t[i][j];
+	
+}
 
+/*void AfficheArbre(Arbre A)
+{
     Arbre copie_a = A;
     if (copie_a != NULL) {
         while (copie_a->pere != copie_a) {
@@ -168,16 +224,23 @@ void AfficheArbre(Arbre A)
             //printf("Hauteur de l'arbre : %d\n",Hauteur_Arbre(copie_a));
         }
     }
-}
+}*/
 
 
 
 
 int main(){
-    Arbre ab = arbreNouv();
+    Arbre ab = MakeSet(0);
+    Affiche_Hauteur(ab);
+
+    Arbre ac = MakeSet(0);
+    Affiche_Hauteur(ac);
+
+
+    /*Arbre ab = arbreNouv();
     ab = Insertion_A(ab,0);
     printf("Insertion de la racine : ----\n");
-    Affiche_Hauteur(ab);
+    Affiche_Hauteur(ab);*/
     //printf("Valeur de ab : %d\n",ab->pixel[0]);
     /*printf("Hauteur de ab : %d\n",ab->hauteur);
     printf("Hauteur du pere de ab : %d\n",ab->hauteur);
@@ -237,37 +300,37 @@ int main(){
     printf("Hauteur de cette valeur : %d\n",ab->hauteur);
     printf("Hauteur du pere de cette valeur : %d\n",ab->pere->pere->hauteur);*/
 
-    ab = Insertion_A(ab,0);
+    /*ab = Insertion_A(ab,0);
     printf("Insertion du premier fils : ----------\n");
-    Affiche_Hauteur(ab);
+    Affiche_Hauteur(ab);*/
     /*ab = Insertion_Hauteur(ab);
     printf("valeur du ptr : %d\n",ab->pixel[0]);
     printf("valeur pere du ptr : %d\n",ab->pere->pixel[0]);
     printf("Hauteur de cette valeur : %d\n",ab->hauteur);
     printf("Hauteur du pere de cette valeur : %d\n",ab->pere->pere->pere->hauteur);*/
 
-    ab = Insertion_A(ab,0);
+    /*ab = Insertion_A(ab,0);
     printf("Insertion du second fils : ---------\n");
     Affiche_Hauteur(ab);
-    
+    */
     /*ab = Insertion_Hauteur(ab);
     printf("valeur du ptr : %d\n",ab->pixel[0]);
     printf("valeur pere du ptr : %d\n",ab->pere->pixel[0]);
     printf("Hauteur de cette valeur : %d\n",ab->hauteur);
     printf("Hauteur du pere de cette valeur : %d\n ",ab->pere->pere->pere->hauteur);*/
 
-    ab = Insertion_A(ab,0);
+    /*ab = Insertion_A(ab,0);
     printf("Insertion du 3eme fils : ---------\n");
-     Affiche_Hauteur(ab);
+     Affiche_Hauteur(ab);*/
     /*ab = Insertion_Hauteur(ab);
     printf("valeur du ptr : %d\n",ab->pixel[0]);
     printf("valeur pere du ptr : %d\n",ab->pere->pixel[0]);
     printf("Hauteur de cette valeur : %d\n",ab->hauteur);
     printf("Hauteur du pere de cette valeur : %d\n ",ab->pere->pere->pere->hauteur);*/
 
-    ab = Insertion_A(ab,0);
+    /*ab = Insertion_A(ab,0);
     printf("Insertion du 4eme fils\n ");
-    Affiche_Hauteur(ab);// Et senser nous afficher une hauteur de la racine de 5
+    Affiche_Hauteur(ab);// Et senser nous afficher une hauteur de la racine de 5*/
     /*ab = Insertion_Hauteur(ab);
     printf("valeur du ptr : %d\n",ab->pixel[0]);
     printf("valeur pere du ptr : %d\n",ab->pere->pixel[0]);
