@@ -46,8 +46,6 @@ PBM Read(char * filename){
 	int cmp = 0;
 	for(i=0; i<n; i++){
 		for(j=0; j<m; j++){
-			//fscanf(pfile,"%d",&k);
-			//c = fgetc(pfile);
 			
 			if (cmp == 70){
 				fseek(pfile, 1, SEEK_CUR);
@@ -60,17 +58,12 @@ PBM Read(char * filename){
 			}
 			
 			k = c[0]-'0';
-			//printf("%d/%d ",cmp,k);
+			
 			p.tableau[i][j] = k;
 		}
 	}
 	pclose(pfile);
-	
-	/*for(i=0; i<n; i++){
-		for(j=0; j<m; j++){
-			printf("%d",p.tableau[i][j]);
-		}
-	}*/
+	free(p.nbMage);
 	
 	return p;
 }
@@ -87,7 +80,7 @@ void freetab(PBM p){
 
 void freeTab(PPM p){
 	
-	//free(p.nbMage);
+	//free(p1.nbMage);
 	
 	for(int i=0; i<p.nbh; i++){
 		free(p.tableau[i]);
