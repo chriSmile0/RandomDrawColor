@@ -247,11 +247,15 @@ void uniformiser(TB t, PBM p, Liste l1, int i, int j)
 
 bool estNoir(Liste l)
 {
-	if (l.head->val[0] == 0)
-		if(l.head->val[1] == 0)
+	if (l.head->val[0] == 0){
+		if(l.head->val[1] == 0){
 			if(l.head->val[2] == 0)
 				return true;
+		}
+	}
 	else return false;
+	
+	return false;
 }
 
 TB voisin(TB t, PBM p)
