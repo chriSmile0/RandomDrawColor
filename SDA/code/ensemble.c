@@ -92,7 +92,7 @@ void detruireTB(TB t, PBM p){
 	
 }
 	
-void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j, int x, int y){ // i j -> liste 2   x y ->liste 1
+void Union(TB t, PBM p,Liste l1, Liste l2, int i, int j, int x, int y){ 
 	
 	l1.tail->suivant = l2.head;
 	l1.tail = l2.tail;
