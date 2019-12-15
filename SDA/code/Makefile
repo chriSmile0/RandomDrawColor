@@ -4,9 +4,9 @@ CC=gcc
 CFLAGS=-W -Wall 
 CPPFLAGS += -I include 
 
-ifeq (ARBRE,$(MODE))
+ifeq (LISTE,$(MODE))
 
-main: main_arbre.o fichier.o ensemble_arbre.o
+main: main.o fichier.o ensemble.o
 	$(CC) -o $@ $^ $(CFLAGS)
 
 %.o: %.c
@@ -14,7 +14,7 @@ main: main_arbre.o fichier.o ensemble_arbre.o
 	
 else
 
-main: main.o fichier.o ensemble.o
+main: main_arbre.o fichier.o ensemble_arbre.o
 	$(CC) -o $@ $^ $(CFLAGS)
 
 %.o: %.c
@@ -25,5 +25,4 @@ endif
 clean:
 	rm -fr fichier.o ensemble.o ensemble_arbre.o main_arbre.o main.o main projet-sda.tar.xz image
 	
-dist: 
-	tar cvfj projet-sda.tar.xz ensemble.c ensemble.h fichier.c fichier.h main.c Makefile
+

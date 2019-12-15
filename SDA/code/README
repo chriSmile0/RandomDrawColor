@@ -1,0 +1,24 @@
+
+BIENVENUE DANS LE PROGRAMME DE COLORIAGE D'IMAGE :
+
+Pour pouvoir utiliser le programme, merci de vérifier les prérequis suivant : installation du packet "make" + librairie c standard 
+
+Voici les instructions pour compiler le programme : 
+	
+	-ouvrir un terminal dans le dossier code 
+	-executer la commande "make" -> la commande make compile automatiquement le programme en mode arbre ( car c'est le seul fonctionnel pour plus d'information merci de regarder le compte rendu); toutefois vous pouvez tester le mode liste en compilant de la manière suivant "make MODE=LISTE"
+	
+
+Voici les instructions pour demarrer le programme après compilation:
+
+	-ouvrir un terminal dans le dossier code
+	-rajouter l'image dans le dossier code 
+	-executer la commande "./main nom_de_l'image"
+
+IMPORTANT : LE PROGRAMME CREE UN FICHIER NOMME "Image" VERIFIER QU'IL N'Y A PAS DE FICHIER DE CE NOM AVANT DE DEMARRER
+
+
+REMARQUES : - Le mode arbre est fonctionnel mais il est lent pour les images de grandes tailles
+	    - Le mode liste ne fonctionne pas correctement 
+	    - Vous pouvez également mettre vos images dans un autre emplacement et utiliser le chemin relatif dans la commande d'execution
+	    - Une instruction make clean a été rajouté
