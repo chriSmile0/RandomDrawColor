@@ -23,6 +23,6 @@ main: main_arbre.o fichier.o ensemble_arbre.o
 endif
 	
 clean:
-	rm -fr fichier.o ensemble.o ensemble_arbre.o main_arbre.o main.o main projet-sda.tar.xz image
+	rm -fr fichier.o ensemble.o ensemble_arbre.o main_arbre.o main.o main projet-sda.tar.xz Image
 	
 

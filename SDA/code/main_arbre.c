@@ -180,6 +180,11 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	
+	float temps;
+	clock_t t1,t2;
+	
+	t1 = clock();
+	
 	PBM p = Read(argv[1]);
 	TB t = creerTB(p);
 	t = voisin(t,p);
@@ -219,6 +224,10 @@ int main(int argc, char *argv[])
 	freetab(p);
 	freeTab(p1);
 	detruireTB(t,p);
+	
+	t2 = clock();
+	temps = (float)(t2-t1)/CLOCKS_PER_SEC;
+	printf("temps = %f\n", temps);
 	
 	return 0;
 }
