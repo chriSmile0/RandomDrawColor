@@ -69,9 +69,6 @@ PBM Read(char * filename){
 }
 
 void freetab(PBM p){
-	
-	//free(p.nbMage);
-	
 	for(int i=0; i<p.nbh; i++){
 		free(p.tableau[i]);
 	}
@@ -79,9 +76,6 @@ void freetab(PBM p){
 }
 
 void freeTab(PPM p){
-	
-	//free(p1.nbMage);
-	
 	for(int i=0; i<p.nbh; i++){
 		free(p.tableau[i]);
 	}

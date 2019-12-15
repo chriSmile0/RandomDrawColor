@@ -116,5 +116,27 @@ void reuniformiser(TB t,PBM p,Liste l2,int i,int j);
  */
 void uniformiser(TB t, PBM p, Liste l2, int i, int j);
 
+/**
+ * \brief test la couleur du pixel
+ * \param[in] la liste représentant le pixel à tester
+ * \return true -> pixel noir / false -> pixel blanc
+ */
+bool estNoir(Liste l);
+
+/**
+ * \brief parcours le tableau pour unifier les voisins blancs
+ * \param[in] structure TB représentant l'image
+ * \param[in] structure PBM p pour les dimensions
+ * \return TB dont les pixels blancs voisin ont été unifié
+ */
+TB voisin(TB t, PBM p);
+
+/**
+ * \brief Convertis la TB en une structure PPM
+ * \param[in] structure TB représentant l'image
+ * \param[in] structure PBM p pour les dimensions
+ * \return structure PPM représentant l'image coloriée
+ */
+PPM creerPPM(TB t, PBM p)
 
 #endif
