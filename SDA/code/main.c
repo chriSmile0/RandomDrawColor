@@ -1,3 +1,8 @@
+/**
+ * \file main.c
+ * \brief Main.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -172,42 +177,7 @@ TB voisin(TB t, PBM p){
 	return t;
 }
 
-int main(int argc, char *argv[])
-{
-	if (argc != 2){
-		fprintf(stderr,"error argument");
-		exit(EXIT_FAILURE);
-	}
-	
-	float temps;
-	clock_t t1,t2;
-	
-	t1 = clock();
-	
-	PBM p = Read(argv[1]);
-	
-	
-	TB t = creerTB(p);
-	
-	t = voisin(t,p);
-			
-	printf("fini\n");
-	
-	/*
-	Liste l = t[0][40];
-	
-	int v1,v2,v3;
-	
-	v1 = l.head->val[0];
-	v2 = l.head->val[1];
-	v3 = l.head->val[2];
-	
-	printf("\n");
-	printf("%d\n",v1);
-	printf("%d\n",v2);
-	printf("%d\n",v3);
-	*/
-	
+PPM creerPPM(TB t, PBM p){
 	PPM p1;
 	p1.nbMage = "P3";
 	p1.nbl = p.nbl;
@@ -237,7 +207,32 @@ int main(int argc, char *argv[])
 		}
 	}
 	
+	return p1;
+}
+
+int main(int argc, char *argv[])
+{
+	if (argc != 2){
+		fprintf(stderr,"error argument");
+		exit(EXIT_FAILURE);
+	}
 	
+	float temps;
+	clock_t t1,t2;
+	
+	t1 = clock();
+	
+	PBM p = Read(argv[1]);
+	
+	
+	TB t = creerTB(p);
+	
+	t = voisin(t,p);
+			
+	printf("fini\n");
+	
+	PPM p1 = creerPPM(t,p);
+
 	Write(p1);
 	
 	

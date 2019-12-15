@@ -173,22 +173,7 @@ TB uniformiserColori(TB t, PBM p){
 	return t;
 }
 
-int main(int argc, char *argv[])
-{
-	if (argc != 2){
-		fprintf(stderr,"error argument");
-		exit(EXIT_FAILURE);
-	}
-	
-	float temps;
-	clock_t t1,t2;
-	
-	t1 = clock();
-	
-	PBM p = Read(argv[1]);
-	TB t = creerTB(p);
-	t = voisin(t,p);
-	t = uniformiserColori(t,p);
+PPM creerPPM(TB t, PBM p){
 	PPM p1;
 	p1.nbMage = "P3";
 	p1.nbl = p.nbl;
@@ -218,6 +203,28 @@ int main(int argc, char *argv[])
 		}
 	}
 	
+	return p1;
+}
+
+
+int main(int argc, char *argv[])
+{
+	if (argc != 2){
+		fprintf(stderr,"error argument");
+		exit(EXIT_FAILURE);
+	}
+	
+	float temps;
+	clock_t t1,t2;
+	
+	t1 = clock();
+	
+	PBM p = Read(argv[1]);
+	TB t = creerTB(p);
+	t = voisin(t,p);
+	t = uniformiserColori(t,p);
+	
+	PPM p1 = creerPPM(t,p);
 	
 	Write(p1);
 	
