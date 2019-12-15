@@ -52,11 +52,15 @@ TB creerTB(PBM p)
 
 bool estNoir(Arbre a)
 {
-	if (a.chaine->pixel[0] == 0)
-		if (a.chaine->pixel[1] == 0)
+	if (a.chaine->pixel[0] == 0){
+		if (a.chaine->pixel[1] == 0){
 			if (a.chaine->pixel[2] == 0)
-				return true;		
+				return true;
+		}
+	}
 	else return false;
+
+	return false;
 }
 
 void Union(Arbre a1, Arbre a2)
@@ -250,7 +254,7 @@ PPM creerPPM(TB t, PBM p)
 	int tmp = p.nbl*3;
 	
 	p1.tableau = malloc(sizeof(int*) * p1.nbh);
-	for (int = 0; i < p1.nbh; i++)
+	for (int i = 0; i < p1.nbh; i++)
 		p1.tableau[i] = malloc(tmp * sizeof(int));
 	
 	for (int j = 0; j < p1.nbh; j++)
