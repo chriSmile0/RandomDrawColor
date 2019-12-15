@@ -48,7 +48,6 @@ Liste insertion(int valeur1, Liste e);
 /**
  * \brief Initialise un ensemble 
  * \param[in] valeur 0 ou 1
- * \param[in] liste vide
  * | fct utilisé = listeNouv() / insertion()
  * \return Une liste représentant un pixel.
  */
