@@ -10,11 +10,10 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc != 2){
+	if (argc != 2) {
 		fprintf(stderr,"error argument");
 		exit(EXIT_FAILURE);
 	}
-	
 	float temps;
 	clock_t t1,t2;
 	

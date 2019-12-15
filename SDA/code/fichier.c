@@ -1,7 +1,7 @@
 #include "fichier.h"
 
-PBM Read(char * filename){
-	
+PBM Read(char * filename)
+{
 	FILE * pfile = NULL;
 	pfile = fopen(filename, "r+");
 	if (pfile == NULL) {
@@ -25,7 +25,7 @@ PBM Read(char * filename){
 	p.nbh = n;
 	
 	p.tableau = malloc(sizeof(int*) * n);
-	if (p.tableau == NULL){
+	if (p.tableau == NULL) {
 		fprintf(stderr,"Tableau error");
 		exit(EXIT_FAILURE);
 	}
@@ -33,9 +33,9 @@ PBM Read(char * filename){
 	int i,j;
 	char c[1];
 	
-	for(i=0; i<n; i++){
+	for (i = 0; i < n; i++) {
 		p.tableau[i] = malloc(m * sizeof(int));
-		if (p.tableau == NULL){
+		if (p.tableau == NULL) {
 			fprintf(stderr,"Tableau error");
 			exit(EXIT_FAILURE);
 		}
@@ -44,10 +44,10 @@ PBM Read(char * filename){
 	
 	fseek(pfile, 1, SEEK_CUR);
 	int cmp = 0;
-	for(i=0; i<n; i++){
-		for(j=0; j<m; j++){
+	for (i = 0; i < n; i++) {
+		for(j = 0; j < m; j++) {
 			
-			if (cmp == 70){
+			if (cmp == 70) {
 				fseek(pfile, 1, SEEK_CUR);
 				fread(c, 1, 1,pfile);
 				cmp = 1;
@@ -68,27 +68,27 @@ PBM Read(char * filename){
 	return p;
 }
 
-void freetab(PBM p){
-	for(int i=0; i<p.nbh; i++){
+void freetab(PBM p)
+{
+	for (int i = 0; i < p.nbh; i++) 
 		free(p.tableau[i]);
-	}
 	free(p.tableau);
 }
 
-void freeTab(PPM p){
-	for(int i=0; i<p.nbh; i++){
+void freeTab(PPM p)
+{
+	for (int i = 0; i < p.nbh; i++) 
 		free(p.tableau[i]);
-	}
 	free(p.tableau);
 }
 	
-void Write(PPM p){
-	
+void Write(PPM p)
+{
 	FILE* image = NULL;
 	
 	image = fopen("Image", "a");
 	
-	if(image != NULL){
+	if (image != NULL) {
 		fputs(p.nbMage,image);
 		fputs("\n",image);
 		fprintf(image, "%d", p.nbl);
@@ -99,24 +99,23 @@ void Write(PPM p){
 		fputs("\n",image);
 		
 		int i,j;
-		for (i=0; i<p.nbh; i++){
-			for (j=0; j<p.nbl*3; j++){
+		for (i = 0; i < p.nbh; i++) 
+			for (j = 0; j < p.nbl*3; j++) {
 				fprintf(image, "%d", p.tableau[i][j]);
 				fputs(" ", image);
 			}
-		}
 	}
 	fclose(image);
 }
 
-void Generate(int n,int m){
+void Generate(int n,int m)
+{
 	
 	FILE* image = NULL;
 	
 	image = fopen("Image", "a");
 	
-	if(image != NULL){
-		
+	if (image != NULL) {
 		fputs("P1\n",image);
 		fprintf(image, "%d", m);
 		fputs(" ",image);
@@ -126,21 +125,20 @@ void Generate(int n,int m){
 		srand(time(NULL));
 		int i,j;
 		int cmp = 0;
-		for (i=0; i<n; i++){
-			for (j=0; j<m; j++){
-				if (cmp < 70){
+		for (i = 0; i < n; i++)
+			for (j = 0; j < m; j++) {
+				if (cmp < 70) {
 					cmp++;
 					int chiffre = rand()%2;
-					fprintf(image, "%d",chiffre );
+					fprintf(image, "%d",chiffre);
 				}
-				if (cmp == 69){
+				if (cmp == 69) {
 					cmp = 0;
 					int chiffre = rand()%2;
 					fprintf(image, "%d", chiffre);
 					fputs("\n",image);
 				}
 			}
-		}
 	}
 	fclose(image);
 }

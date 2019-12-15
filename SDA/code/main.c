@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc != 2){
+	if (argc != 2) {
 		fprintf(stderr,"error argument");
 		exit(EXIT_FAILURE);
 	}
@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
 	
 	PBM p = Read(argv[1]);
 	
-	
 	TB t = creerTB(p);
 	
 	t = voisin(t,p);
@@ -34,9 +33,7 @@ int main(int argc, char *argv[])
 	PPM p1 = creerPPM(t,p);
 
 	Write(p1);
-	
-	
-	//Generate(100,100);
+
 	freetab(p);
 	freeTab(p1);
 	detruireTB(t,p);
