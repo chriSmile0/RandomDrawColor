@@ -185,9 +185,12 @@ void detruireTB(TB t, PBM p){
 }
 
 TB voisin(TB t, PBM p){
-	
+	int cmp = 0;
+	int fin = p.nbh*p.nbl;
 	for (int i=0; i<p.nbh; i++){
 		for (int j=0; j<p.nbl; j++){
+			printf("%d/%d\n",cmp,fin);
+			cmp++;
 			if (i == 0 && j == 0){  //en haut a gauche
 				if (estNoir(t[i][j]) == false){
 					

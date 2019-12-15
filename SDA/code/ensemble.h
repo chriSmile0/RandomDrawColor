@@ -136,6 +136,6 @@ TB voisin(TB t, PBM p);
  * \param[in] structure PBM p pour les dimensions
  * \return structure PPM représentant l'image coloriée
  */
-PPM creerPPM(TB t, PBM p)
+PPM creerPPM(TB t, PBM p);
 
 #endif
